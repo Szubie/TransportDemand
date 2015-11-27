@@ -7,3 +7,6 @@ Please note that the data contained on the website has been changed, and does no
 
 
 If asked to scale this solution, I would not process the incoming data in Javascript, I would create a database and read the information from there. However, as previously mentioned, this website was built in a few hours to demonstrate a proof of concept, and thus certain methodologies were used that would not be implemented in a real project.
+
+
+geotools2.js is required locally to allow the website to function properly.
