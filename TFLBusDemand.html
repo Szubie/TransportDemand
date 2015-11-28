@@ -49,10 +49,6 @@ document.getElementById('button').onclick = function(){
     <div id="map"></div>
     <script>
 
-// This example creates circles on the map, representing populations in North
-// America.
-
-// First, create an object containing LatLng and population for each city.
 var busmap = {
   "columns": [
     "Days",
@@ -582,20 +578,6 @@ function busStops(){
 }
 busStops();
 
-/*var objectList={}
-
-function fillObjects(){
-  for(x=0;x<keyList.length;x++){
-    objectList[keyList[x]]=0;
-    for(y=0;y<busmap.rows.length;y++){
-      if(keyList[x]==busmap.rows[y].BUSSTOPID){
-        objectList[keyList[x]]+=parseInt(busmap.rows[y].JOURNEYS)
-      }
-    } 
-  }
-}
-fillObjects();
-*/
 
 var objectList=[];
 function fillObjects(){
@@ -634,10 +616,9 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  //51.415793, -0.200085
 
-  // Construct the circle for each value in citymap.
-  // Note: We scale the area of the circle based on the population.
+  // Construct the circle for each value in objectlist.
+  // Note: We change the colour of the circle based on the demand.
   for (x=0; x<objectList.length;x++){
 
     var colour;
@@ -650,7 +631,7 @@ function initMap() {
     var total = objectList[x].totalnum;
     var a = objectList[x].coordinates.replace('[','').replace(']','').split(",");
     var finalcoordinates=transformCoordinates(a[0],a[1])
-    // Add the circle for this city to the map.
+    // Add the circle for this bus-stop to the map.
     var busCircle = new google.maps.Circle({
       strokeColor: colour,
       strokeOpacity: 0.8,
