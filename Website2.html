@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+  <select id="selection">
+    <option value="2015/10/11">11/10/2015</option>
+    <option value="2015/10/12">12/10/2015</option>
+    <option value="2015/10/13">13/10/2015</option>
+    <option value="2015/10/14">14/10/2015</option>
+    <option value="2015/10/15">15/10/2015</option>
+    <option value="2015/10/16">16/10/2015</option>
+    <option value="2015/10/17">17/10/2015</option>
+    <option value="2015/10/18">18/10/2015</option>
+    <option value="2015/10/19">19/10/2015</option>
+    <option value="2015/10/20">20/10/2015</option>
+    <option value="2015/10/21">21/10/2015</option>
+    <option value="2015/10/22">22/10/2015</option>
+    <option value="2015/10/23">23/10/2015</option>
+    <option value="2015/10/24">24/10/2015</option>
+  </select>
+
+<button type="button" id="button">Click Me!</button>
+
+<script>
+document.getElementById('button').onclick = function(){
+    var input = document.getElementById("selection");
+  };
+</script>
+
+
+
+  <head>
+    <script language="javascript" src="geotools2.js"></script>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Circles</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+// This example creates circles on the map, representing populations in North
+// America.
+
+// First, create an object containing LatLng and population for each city.
+var busmap = {
+  "columns": [
+    "Days",
+    "stop_id",
+    "stop_code",
+    "stop_name",
+    "point",
+    "BUSSTOPID",
+    "JOURNEYS"
+  ],
+  "rows": [
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "11",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "12",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "16",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "16",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "17",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "12",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "14",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "6",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "12",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "8",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "6",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "7",
+      "Days": "2015/10/11",
+      "stop_id": "4.0",
+      "stop_code": "R0861",
+      "BUSSTOPID": "R0861",
+      "stop_name": "Placeholder",
+      "point": "[517012.00157266407,169062.00188628564]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "6",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "8",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    },
+    {
+      "JOURNEYS": "5",
+      "Days": "2015/10/11",
+      "stop_id": "3.0",
+      "stop_code": "R0865",
+      "BUSSTOPID": "R0865",
+      "stop_name": "Placeholder2",
+      "point": "[520152.0032431435,178925.00041784174]"
+    }
+  ]
+}
+
+var keyList=[];
+function busStops(){
+  for (x=0; x<busmap.rows.length; x++){
+    var key=busmap.rows[x].BUSSTOPID
+    if (keyList.indexOf(key)==-1){
+      keyList.push(key);
+    }
+  }
+}
+busStops();
+
+/*var objectList={}
+
+function fillObjects(){
+  for(x=0;x<keyList.length;x++){
+    objectList[keyList[x]]=0;
+    for(y=0;y<busmap.rows.length;y++){
+      if(keyList[x]==busmap.rows[y].BUSSTOPID){
+        objectList[keyList[x]]+=parseInt(busmap.rows[y].JOURNEYS)
+      }
+    } 
+  }
+}
+fillObjects();
+*/
+
+var objectList=[];
+function fillObjects(){
+  for(x=0;x<keyList.length;x++){
+    var totalnum=0;
+    var coordinates="";
+    for(y=0; y<busmap.rows.length;y++){
+      if(keyList[x]==busmap.rows[y].BUSSTOPID){
+       totalnum+=parseInt(busmap.rows[y].JOURNEYS);
+       coordinates=busmap.rows[y].point;
+      }
+    }
+    objectList.push({"busstop":keyList[x], "totalnum":totalnum, "coordinates":coordinates});
+  }
+}
+fillObjects();
+
+function transformCoordinates(lat, lon){
+  //create a osgb coordinate
+  osgb=new GT_OSGB();
+  osgb.setGridCoordinates(lat, lon);
+
+  //convert to a wgs84 coordinate
+  return osgb.getWGS84();
+
+  //now work with wgs84.latitude and wgs84.longitude
+}
+
+
+circleList=[];
+function initMap() {
+  // Create the map.
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: {lat: 51.415793, lng: -0.200085},
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  //51.415793, -0.200085
+
+  // Construct the circle for each value in citymap.
+  // Note: We scale the area of the circle based on the population.
+  for (x=0; x<objectList.length;x++){
+
+    var colour;
+    if (objectList[x].totalnum<170){
+      colour='#0000FF';
+    }
+    else{
+      colour='#FF0000';
+    }
+    var total = objectList[x].totalnum;
+    var a = objectList[x].coordinates.replace('[','').replace(']','').split(",");
+    var finalcoordinates=transformCoordinates(a[0],a[1])
+    // Add the circle for this city to the map.
+    var busCircle = new google.maps.Circle({
+      strokeColor: colour,
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: colour,
+      fillOpacity: 0.7,
+      map: map,
+      center: {lat:finalcoordinates.latitude, lng:finalcoordinates.longitude},
+      radius: Math.sqrt(objectList[x].totalnum) * 10
+    });
+    busCircle['num']=total;
+    circleList.push(busCircle); 
+  }
+  
+  //create info window
+  var infoWindow= new google.maps.InfoWindow({
+      content: "sss" //TODO
+      });
+
+    //add a click event to the circle
+    for (x=0;x<circleList.length;x++){
+      google.maps.event.addListener(circleList[x], 'click', function(ev){
+      //call  the infoWindow
+     infoWindow.setContent('The Number of transcations: '+this.num);
+      infoWindow.setPosition(this.getCenter());
+       infoWindow.open(map);
+      }); 
+    }
+  }
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0XT5Kt_J2dSHGVqTXmA_zO91BLTx6aB8&signed_in=true&callback=initMap"></script>
+  </body>
+</html>
