@@ -583,20 +583,23 @@ busStops();
 
 
 var objectList=[];
-function fillObjects(){
+function refillObjects(input){
+  objectList=[];
   for(x=0;x<keyList.length;x++){
     var totalnum=0;
     var coordinates="";
     for(y=0; y<busmap.rows.length;y++){
       if(keyList[x]==busmap.rows[y].BUSSTOPID){
-       totalnum+=parseInt(busmap.rows[y].JOURNEYS);
-       coordinates=busmap.rows[y].point;
+        if (input == busmap.rows[y].Days) {
+          totalnum+=parseInt(busmap.rows[y].JOURNEYS);
+          coordinates=busmap.rows[y].point;
+        }
       }
     }
     objectList.push({"busstop":keyList[x], "totalnum":totalnum, "coordinates":coordinates});
   }
 }
-fillObjects();
+refillObjects(document.getElementById("selection")[document.getElementById("selection").selectedIndex].value);
 
 function transformCoordinates(lat, lon){
   //create a osgb coordinate
